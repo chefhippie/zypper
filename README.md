@@ -1,0 +1,2 @@
+zypper Cookbook
+===============

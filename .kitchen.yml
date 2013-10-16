@@ -1,0 +1,25 @@
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+
+platforms:
+- name: opensuse-12.1
+  driver_config:
+    box: opensuse-12.1-amd64
+    box_url: http://repos.tbpro.de/vagrant/opensuse-12.1-amd64.box
+  run_list:
+  - recipe[zypper]
+
+suites:
+- name: default
+  run_list:
+    - recipe[minitest-handler]
+    - recipe[zypper_test]
+  attributes: {}
+
+- name: lwrps
+  run_list:
+    - recipe[minitest-handler]
+    - recipe[zypper_test::lwrps]
+  attributes: {}
