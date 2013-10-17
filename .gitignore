@@ -1,6 +1,0 @@
-.bundle
-.vagrant
-.kitchen
-
-Berksfile.lock
-Gemfile.lock

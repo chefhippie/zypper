@@ -17,6 +17,4 @@
 # limitations under the License.
 #
 
-default["zypper"]["repos"] = {
-
-}
+default["zypper"]["repos"] = {}

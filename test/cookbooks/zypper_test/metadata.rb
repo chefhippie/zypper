@@ -1,6 +1,0 @@
-name "zypper_test"
-maintainer "Thomas Boerger"
-maintainer_email "tboerger@tpro.de"
-license "Apache 2.0"
-description "This cookbook is used with test-kitchen to test the parent, zypper cookbok"
-version "1.0.0"

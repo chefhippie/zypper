@@ -36,13 +36,13 @@ action :add do
     end
   end
 
-  if File.exists? "/etc/zypp/repos.d/#{new_resource.reponame}.repo"
-    Chef::Log.info "Allready added #{new_resource.reponame} repo"
+  if ::File.exists? "/etc/zypp/repos.d/#{new_resource.alias}.repo"
+    Chef::Log.info "Allready added #{new_resource.alias} repo"
   else
-    Chef::Log.info "Adding #{new_resource.reponame} repository"
+    Chef::Log.info "Adding #{new_resource.alias} repository"
 
-    execute "zypper_addrepo_#{new_resource.reponame}" do
-      command "zypper addrepo --gpg-auto-import-keys -n #{new_resource.reponame} #{new_resource.repouri}"
+    execute "zypper_addrepo_#{new_resource.alias}" do
+      command "zypper addrepo -n '#{new_resource.title}' #{new_resource.uri} #{new_resource.alias}"
     end
 
     new_resource.updated_by_last_action(true)
@@ -50,29 +50,29 @@ action :add do
 end
 
 action :remove do
-  if File.exists? "/etc/zypp/repos.d/#{new_resource.reponame}.repo"
-    Chef::Log.info "Removing #{new_resource.reponame} repository"
+  if ::File.exists? "/etc/zypp/repos.d/#{new_resource.alias}.repo"
+    Chef::Log.info "Removing #{new_resource.alias} repository"
 
-    execute "zypper_removerepo_#{new_resource.reponame}" do
-      command "zypper removerepo #{new_resource.reponame}"
+    execute "zypper_removerepo_#{new_resource.alias}" do
+      command "zypper removerepo #{new_resource.alias}"
     end
 
     new_resource.updated_by_last_action(true)
   else
-    Chef::Log.error "Remove failed for #{new_resource.reponame}"
+    Chef::Log.error "Remove failed for #{new_resource.alias}"
   end
 end
 
 action :refresh do
-  if File.exists? "/etc/zypp/repos.d/#{new_resource.reponame}.repo"
-    Chef::Log.info "Refreshing #{new_resource.reponame} repository"
+  if ::File.exists? "/etc/zypp/repos.d/#{new_resource.alias}.repo"
+    Chef::Log.info "Refreshing #{new_resource.alias} repository"
 
-    execute "zypper_refresh_#{new_resource.reponame}" do
-      command "zypper refresh #{new_resource.reponame}"
+    execute "zypper_refresh_#{new_resource.alias}" do
+      command "zypper refresh #{new_resource.alias}"
     end
 
     new_resource.updated_by_last_action(true)
   else
-    Chef::Log.error "Refresh failed for #{new_resource.reponame}"
+    Chef::Log.error "Refresh failed for #{new_resource.alias}"
   end
 end

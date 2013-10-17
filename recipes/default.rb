@@ -17,9 +17,10 @@
 # limitations under the License.
 #
 
-default["zypper"]["repos"].each do |repo|
-  zypper_repository repo["name"] do
-    repouri repo["uri"]
+node["zypper"]["repos"].each do |repo|
+  zypper_repository repo["alias"] do
+    uri repo["uri"]
+    title repo["title"]
 
     if repo["key"]
       key repo["key"]
