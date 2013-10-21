@@ -31,7 +31,7 @@ action :add do
       command "rpm --import #{Chef::Config[:file_cache_path]}/#{new_resource.key}.key"
     end
   elsif new_resource.key && (new_resource.key =~ /http/)
-    execute "rpm_import_#{new_resource.key}" do
+    execute "rpm_import_#{Digest::MD5.hexdigest(new_resource.key)}" do
       command "rpm --import #{new_resource.key}"
     end
   end
