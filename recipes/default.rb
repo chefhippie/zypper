@@ -31,3 +31,10 @@ node["zypper"]["repos"].each do |repo|
     end
   end
 end
+
+execute "zypper_refresh" do
+  command "zypper refresh"
+  ignore_failure true
+
+  action :nothing
+end.run_action(:run)
