@@ -33,7 +33,7 @@ node["zypper"]["repos"].each do |repo|
 end
 
 execute "zypper_refresh" do
-  command "zypper refresh"
+  command "zypper --non-interactive --gpg-auto-import-keys refresh"
   ignore_failure true
 
   action :nothing
