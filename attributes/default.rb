@@ -17,4 +17,8 @@
 # limitations under the License.
 #
 
+default["zypper"]["packages"] = %w(
+
+)
+
 default["zypper"]["repos"] = {}
