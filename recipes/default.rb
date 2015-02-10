@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if node["platform_family"] == "debian"
+if node["platform_family"] == "suse"
   node["zypper"]["repos"].each do |repo|
     zypper_repository repo["alias"] do
       uri repo["uri"]
