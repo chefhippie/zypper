@@ -64,15 +64,11 @@ action :remove do
 end
 
 action :refresh do
-  if ::File.exists? "/etc/zypp/repos.d/repo-#{new_resource.alias}.repo"
-    Chef::Log.info "Refreshing #{new_resource.alias} repository"
+  Chef::Log.info "Refreshing #{new_resource.alias} repository"
 
-    execute "zypper_refresh_#{new_resource.alias}" do
-      command "zypper refresh repo-#{new_resource.alias}"
-    end
-
-    new_resource.updated_by_last_action(true)
-  else
-    Chef::Log.error "Refresh failed for #{new_resource.alias}"
+  execute "zypper_refresh_#{new_resource.alias}" do
+    command "zypper refresh repo-#{new_resource.alias}"
   end
+
+  new_resource.updated_by_last_action(true)
 end
