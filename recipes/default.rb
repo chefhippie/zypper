@@ -31,7 +31,7 @@ if node["platform_family"] == "suse"
         keyserver repo["keyserver"]
       end
 
-      notifies :run, "execute[zypper_refresh]", :immediately
+      notifies :run, "execute[zypper_refresh]"
     end
   end
 
