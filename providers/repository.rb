@@ -42,7 +42,7 @@ action :add do
     Chef::Log.info "Adding #{new_resource.alias} repository"
 
     execute "zypper_addrepo_#{new_resource.alias}" do
-      command "zypper -n --gpg-auto-import-keys addrepo '#{new_resource.title}' #{new_resource.uri} repo-#{new_resource.alias}"
+      command "zypper --gpg-auto-import-keys -n addrepo '#{new_resource.title}' #{new_resource.uri} repo-#{new_resource.alias}"
     end
 
     new_resource.updated_by_last_action(true)
@@ -54,7 +54,7 @@ action :remove do
     Chef::Log.info "Removing #{new_resource.alias} repository"
 
     execute "zypper_removerepo_#{new_resource.alias}" do
-      command "zypper -n --gpg-auto-import-keys removerepo repo-#{new_resource.alias}"
+      command "zypper --gpg-auto-import-keys -n removerepo repo-#{new_resource.alias}"
     end
 
     new_resource.updated_by_last_action(true)
